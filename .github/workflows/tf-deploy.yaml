@@ -40,10 +40,10 @@ jobs:
           terraform -chdir=./terraform/vpc/ init \
             -backend=true \
             -backend-config='bucket=${{ secrets.TF_VAR_TF_STATE_S3_BUCKET }}' \
-            -backend-config="key=${{ inputs.app_name }}" \
+            -backend-config='key=${{ inputs.app_name }}' \
             -backend-config='acl=bucket-owner-full-control' \
             -backend-config='encrypt=true' \
-            -backend-config='region=${{ inputs.region }}
+            -backend-config='region=${{ inputs.region }}'
         env:
           AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
