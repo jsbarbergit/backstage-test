@@ -12,6 +12,9 @@ on:
       tf_destroy:
         description: 'Perform a terraform destroy'
         default: 'false'
+      vpc_size:
+        description: 'VPC Size'
+        required: true
 jobs:
   terraform:
     name: "Terraform-Deploy"
@@ -53,7 +56,8 @@ jobs:
           terraform -chdir=./terraform/vpc/ apply \
             -auto-approve \
             -input=false \
-            -var app_name=${{ inputs.app_name }}
+            -var app_name=${{ inputs.app_name }} \
+            -var vpc_size=${{ inputs.vpc_size }}
 
       - name: Terraform Destroy
         if: inputs.tf_destroy == 'true'
@@ -61,4 +65,5 @@ jobs:
           terraform -chdir=./terraform/vpc/ destroy \
             -auto-approve \
             -input=false \
-            -var app_name=${{ inputs.app_name }}
+            -var app_name=${{ inputs.app_name }} \
+            -var vpc_size=${{ inputs.vpc_size }}
