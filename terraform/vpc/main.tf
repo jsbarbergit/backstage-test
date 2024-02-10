@@ -21,6 +21,11 @@ variable "app_name" {
   type        = string
 }
 
+variable "cidr" {
+  description = "VPC CIDR Range"
+  type        = string
+}
+
 variable "tags" {
   description = "Common tags for all resources"
   default     = {}
@@ -28,7 +33,7 @@ variable "tags" {
 }
 
 resource "aws_vpc" "rds_module_testing" {
-  cidr_block           = "192.168.0.0/24"
+  cidr_block           = var.cidr
   enable_dns_hostnames = true
   tags = {
     Name = "${var.app_name}-test"
