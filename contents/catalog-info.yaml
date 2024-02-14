@@ -3,7 +3,7 @@ kind: Component
 metadata:
   name: "${{ values.app_name }}"
   annotations:
-    github.com/project-slug: jsbarbergit/backstage-test
+    github.com/project-slug: jsbarbergit/${{ values.app_name }}
     backstage.io/techdocs-ref: dir:.
   title: "${{ values.app_name }}-vpc-${{ values.vpc_size }}"
   description: "VPC Deployment"
